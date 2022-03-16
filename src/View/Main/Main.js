@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Controls from '../../Controls/Controls';
-import { fetchPokemon, fetchPokemonByType, fetchPokemonTypes } from '../../services/fetchpoke';
+import {
+  fetchPokemon,
+  fetchPokemonByQuery,
+  fetchPokemonByType,
+  fetchPokemonTypes,
+} from '../../services/fetchpoke';
 
 export default function Main() {
   const [data, setData] = useState([]);
   const [types, setTypes] = useState([]);
   const [selectedType, setSelectedType] = useState('All');
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     const fetch = async () => {
@@ -30,9 +36,17 @@ export default function Main() {
     fetch();
   }, [selectedType]);
 
+  useEffect(() => {
+    const fetch = async () => {
+      const fetchedByQuery = await fetchPokemonByQuery(query);
+      setData(fetchedByQuery);
+    };
+    fetch();
+  }, [query]);
+
   return (
     <div>
-      <Controls {...{ types, setSelectedType, selectedType }} />
+      <Controls {...{ types, setSelectedType, selectedType, query, setQuery }} />
       {data.map((item) => (
         <div key={item._id}>
           {`${item.pokemon}    
