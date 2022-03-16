@@ -1,10 +1,12 @@
 import React from 'react';
-import ByType from './ByType/ByType';
 
-export default function Sort({ types, setSelectedType, selectedType }) {
+export default function Sort() {
   return (
     <div>
-      <ByType {...{ types, setSelectedType, selectedType }} />
+      <input type="radio" />
+      Ascending
+      <input type="radio" />
+      Descending
     </div>
   );
 }

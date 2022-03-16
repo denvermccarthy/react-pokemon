@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Controls from '../../Controls/Controls';
+import Page from '../../Controls/Page/Page';
 import {
   fetchPokemon,
+  fetchPokemonByPage,
   fetchPokemonByQuery,
   fetchPokemonByType,
   fetchPokemonTypes,
@@ -12,6 +14,8 @@ export default function Main() {
   const [types, setTypes] = useState([]);
   const [selectedType, setSelectedType] = useState('All');
   const [query, setQuery] = useState('');
+  const [order, setOrder] = useState('');
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetch = async () => {
@@ -44,16 +48,25 @@ export default function Main() {
     fetch();
   }, [query]);
 
+  useEffect(() => {
+    const fetch = async () => {
+      const fetchedByPage = await fetchPokemonByPage(page);
+      setData(fetchedByPage);
+    };
+    fetch();
+  }, [page]);
+
   return (
     <div>
       <Controls {...{ types, setSelectedType, selectedType, query, setQuery }} />
       {data.map((item) => (
         <div key={item._id}>
-          {`${item.pokemon}    
-          ${item.type_1}    
-          ${item.type_2}`}
+          {`Name: ${item.pokemon}    
+          Type: ${item.type_1}    
+          `}
         </div>
       ))}
+      <Page {...{ setPage, page }} />
     </div>
   );
 }
