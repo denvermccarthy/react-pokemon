@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Controls from '../../Controls/Controls';
 import { fetchPokemon } from '../../services/fetchpoke';
 
 export default function Main() {
@@ -14,8 +15,9 @@ export default function Main() {
 
   return (
     <div>
+      <Controls />
       {data.map((item) => (
-        <div key={item}>
+        <div key={item._id}>
           {`${item.pokemon}    
           ${item.type_1}    
           ${item.type_2}`}
