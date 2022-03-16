@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Controls from '../../Controls/Controls';
-import { fetchPokemon, fetchPokemonTypes } from '../../services/fetchpoke';
+import { fetchPokemon, fetchPokemonByType, fetchPokemonTypes } from '../../services/fetchpoke';
 
 export default function Main() {
   const [data, setData] = useState([]);
@@ -15,6 +15,12 @@ export default function Main() {
     };
     fetch();
   }, []);
+
+  //   useEffect(() => {
+  //       const fetch = async () => {
+  //           const fetchedByType = await fetchPokemonByType()
+  //       }
+  //   })
 
   return (
     <div>
