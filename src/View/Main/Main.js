@@ -5,6 +5,7 @@ import { fetchPokemon, fetchPokemonByType, fetchPokemonTypes } from '../../servi
 export default function Main() {
   const [data, setData] = useState([]);
   const [types, setTypes] = useState([]);
+  const [selectedType, setSelectedType] = useState('All');
 
   useEffect(() => {
     const fetch = async () => {
@@ -16,15 +17,22 @@ export default function Main() {
     fetch();
   }, []);
 
-  //   useEffect(() => {
-  //       const fetch = async () => {
-  //           const fetchedByType = await fetchPokemonByType()
-  //       }
-  //   })
+  useEffect(() => {
+    const fetch = async () => {
+      if (selectedType === 'All') {
+        const pokeData = await fetchPokemon();
+        setData(pokeData);
+      } else {
+        const fetchedByType = await fetchPokemonByType(selectedType);
+        setData(fetchedByType);
+      }
+    };
+    fetch();
+  }, [selectedType]);
 
   return (
     <div>
-      <Controls {...{ types }} />
+      <Controls {...{ types, setSelectedType, selectedType }} />
       {data.map((item) => (
         <div key={item._id}>
           {`${item.pokemon}    
