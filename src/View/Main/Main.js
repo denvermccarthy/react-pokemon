@@ -12,5 +12,15 @@ export default function Main() {
     fetch();
   }, []);
 
-  return <div>Main</div>;
+  return (
+    <div>
+      {data.map((item) => (
+        <div key={item}>
+          {`${item.pokemon}    
+          ${item.type_1}    
+          ${item.type_2}`}
+        </div>
+      ))}
+    </div>
+  );
 }
