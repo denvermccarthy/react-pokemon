@@ -1,10 +1,10 @@
 import React from 'react';
 import ByType from './ByType/ByType';
 
-export default function Sort() {
+export default function Sort({ types }) {
   return (
     <div>
-      <ByType />
+      <ByType types={types} />
     </div>
   );
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import Sort from './Sort/Sort';
 
-export default function Controls() {
+export default function Controls({ types }) {
   return (
     <div>
-      <Sort />
+      <Sort {...{ types }} />
     </div>
   );
 }
