@@ -1,3 +1,7 @@
+a {
+  text-decoration: none;
+}
+
 .container {
   display: grid;
   grid-auto-columns: 1fr;

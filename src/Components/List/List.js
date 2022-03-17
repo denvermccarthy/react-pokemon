@@ -10,7 +10,6 @@ export default function List({ data }) {
           key={item._id}
           name={item.pokemon}
           ability_1={item.ability_1}
-          ability_2={item.ability_2}
           hp={item.hp}
           atk={item.attack}
           def={item.defense}
