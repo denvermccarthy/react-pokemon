@@ -41,3 +41,27 @@ export async function fetchPokemonByPage(page) {
   const data = await response.json();
   return data.results;
 }
+
+export async function fetchPokemonTest(type, sort, page, query) {
+  const params = new URLSearchParams();
+  params.set('direction', sort);
+  params.append('page', page);
+
+  if (type !== 'All') {
+    params.append('type', type);
+  }
+  if (query !== '') {
+    params.append('pokemon', query);
+  }
+
+  const url = `https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=pokemon&${params.toString()}&perPage=10`;
+  console.log(url);
+
+  const response = await fetch(
+    `https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=pokemon&${params.toString()}&perPage=10`
+  );
+
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
