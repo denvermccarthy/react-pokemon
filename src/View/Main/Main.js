@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import List from '../../Components/List/List';
 import Controls from '../../Controls/Controls';
 import Page from '../../Controls/Page/Page';
-import {
-  fetchPokemon,
-  fetchPokemonByPage,
-  fetchPokemonByQuery,
-  fetchPokemonByType,
-  fetchPokemonTest,
-  fetchPokemonTypes,
-} from '../../services/fetchpoke';
+import { fetchPokemon, fetchPokemonTypes } from '../../services/fetchpoke';
 
 export default function Main() {
   const [data, setData] = useState([]);
@@ -23,7 +17,7 @@ export default function Main() {
     const fetch = async () => {
       const typeData = await fetchPokemonTypes();
       setTypes(typeData);
-      const fetchedByType = await fetchPokemonTest(selectedType, order, page, query);
+      const fetchedByType = await fetchPokemon(selectedType, order, page, query);
       setCount(fetchedByType.count);
       setData(fetchedByType.results);
     };
@@ -33,13 +27,7 @@ export default function Main() {
   return (
     <div>
       <Controls {...{ types, setSelectedType, selectedType, query, setQuery, setOrder, setPage }} />
-      {data.map((item) => (
-        <div key={item._id}>
-          {`Name: ${item.pokemon}    
-          Type: ${item.type_1} ${item.type_2}    
-          `}
-        </div>
-      ))}
+      <List {...{ data }} />
       <Page {...{ setPage, page, count }} />
     </div>
   );
