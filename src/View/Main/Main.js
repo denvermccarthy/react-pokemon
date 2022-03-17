@@ -3,6 +3,7 @@ import List from '../../Components/List/List';
 import Controls from '../../Controls/Controls';
 import Page from '../../Controls/Page/Page';
 import { fetchPokemon, fetchPokemonTypes } from '../../services/fetchpoke';
+import './Main.css';
 
 export default function Main() {
   const [data, setData] = useState([]);
@@ -25,7 +26,7 @@ export default function Main() {
   }, [selectedType, order, page, query]);
 
   return (
-    <div>
+    <div className="main">
       <Controls {...{ types, setSelectedType, selectedType, query, setQuery, setOrder, setPage }} />
       <List {...{ data }} />
       <Page {...{ setPage, page, count }} />
