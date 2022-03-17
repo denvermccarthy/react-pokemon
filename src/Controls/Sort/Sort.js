@@ -1,9 +1,11 @@
 import React from 'react';
+import KeyDropdown from '../KeyDropdown/KeyDropdown';
 import './Sort.css';
 
-export default function Sort({ setOrder }) {
+export default function Sort({ setOrder, setSortKey }) {
   return (
     <div className="order-wrap">
+      <KeyDropdown setter={setSortKey} />
       <div className="order" onChange={(e) => setOrder(e.target.value)}>
         Order:
         <label>

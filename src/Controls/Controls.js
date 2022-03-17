@@ -12,12 +12,16 @@ export default function Controls({
   setQuery,
   setOrder,
   setPage,
+  debouncedQuery,
+  setDebouncedQuery,
+  setSortKey,
+  setSearchKey,
 }) {
   return (
     <div className="controls">
       <Filter {...{ types, setSelectedType, selectedType, setPage }} />
-      <Search {...{ query, setQuery }} />
-      <Sort {...{ setOrder }} />
+      <Search {...{ query, setQuery, debouncedQuery, setDebouncedQuery, setSearchKey }} />
+      <Sort {...{ setOrder, setSortKey }} />
     </div>
   );
 }
