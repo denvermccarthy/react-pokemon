@@ -16,6 +16,7 @@ export default function Main() {
   const [order, setOrder] = useState('asc');
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetch = async () => {
@@ -31,9 +32,12 @@ export default function Main() {
       );
       setCount(fetchedByType.count);
       setData(fetchedByType.results);
+      setLoading(false);
     };
     fetch();
   }, [selectedType, order, page, query, searchKey, sortKey]);
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className="main">
