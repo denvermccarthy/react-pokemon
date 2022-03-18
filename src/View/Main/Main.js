@@ -21,12 +21,6 @@ export default function Main() {
     const fetch = async () => {
       const fillType = await fetchPokemonTypes();
       setTypes(fillType);
-    };
-    fetch();
-  }, []);
-
-  useEffect(() => {
-    const fetch = async () => {
       const fetchedByType = await fetchPokemon(
         selectedType,
         order,

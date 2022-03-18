@@ -21,7 +21,6 @@ export async function fetchPokemon(type, sort, page, query, searchKey, sortKey) 
   const response = await fetch(
     `https://pokedex-alchemy.herokuapp.com/api/pokedex?${params.toString()}&perPage=10`
   );
-  console.log(response);
 
   const data = await response.json();
   return data;
